@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>做出选择 - 文件管理系统</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 300px;
+        }
+
+        .form-container button {
+            padding: 10px 20px;
+            font-size: 18px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .form-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .footer {
+            margin-top: 30px;
+            color: #999;
+            font-size: 14px;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .file-label {
+            padding: 10px 20px;
+            font-size: 18px;
+            color: #fff;
+            background-color: #28a745;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .file-label:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1><strong>做出你的选择</strong></h1>
+        
+        <div class="form-container">
+            <!-- 选择文件 -->
+            <form action="5" method="post">
+                <button type="submit">xxx.jpg</button>
+            </form>
+
+            <form action="6" method="post">
+                <button type="submit">xxx.avi</button>
+            </form>
+
+            <form action="7" method="post">
+                <button type="submit">架构图</button>
+            </form>
+
+            <!-- 上传文件 -->
+            <form id="upload-form" action="8" method="post" enctype="multipart/form-data">
+                <input type="file" id="file-upload" class="file-input" name="file" />
+                <label for="file-upload" class="file-label">上传文件</label>
+                <button type="submit" style="display: none;">上传</button> <!-- 隐藏默认提交按钮 -->
+            </form>
+
+            <!-- 下载文件 -->
+            <form action="9" method="post">
+                <button type="submit">下载文件</button>
+            </form>
+        </div>
+        
+        <div class="footer">
+            <p>© 2024 文件管理系统</p>
+        </div>
+    </div>
+
+    <!-- JavaScript 实现自动提交功能 -->
+    <script>
+        const fileInput = document.getElementById('file-upload');
+        const uploadForm = document.getElementById('upload-form');
+        const submitBtn = uploadForm.querySelector('button[type="submit"]');
+
+        // 监听文件选择事件，当文件选择后自动提交表单
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                uploadForm.submit(); // 自动提交表单
+            }
+        });
+
+        // 提交表单并处理响应
+        uploadForm.addEventListener('submit', function(event) {
+            event.preventDefault();  // 阻止默认的表单提交行为
+
+            const formData = new FormData(uploadForm);  // 创建 FormData 对象，收集文件和其他表单数据
+
+            // 使用 Fetch API 异步提交表单
+            fetch(uploadForm.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())  // 获取响应文本
+            .then(data => {
+                if (data.includes("文件上传成功")) {
+                    alert("文件上传成功！");  // 弹出成功提示框
+                } else {
+                    alert("上传失败，请重试。");  // 弹出失败提示框
+                }
+            })
+            .catch(error => {
+                alert("上传过程中出现错误，请重试。");  // 弹出错误提示框
+            });
+        });
+    </script>
+
+</body>
+</html>

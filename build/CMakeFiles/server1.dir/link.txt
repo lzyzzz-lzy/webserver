@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/server1.dir/main.cpp.o CMakeFiles/server1.dir/CGImysql/sql_connection_pool.cpp.o CMakeFiles/server1.dir/config.cpp.o CMakeFiles/server1.dir/webserver.cpp.o CMakeFiles/server1.dir/timer/lst_timer.cpp.o CMakeFiles/server1.dir/http/http_conn.cpp.o CMakeFiles/server1.dir/log/log.cpp.o  -o server1 -rdynamic -lmysqlclient -lpthread 
