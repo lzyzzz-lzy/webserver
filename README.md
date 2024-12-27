@@ -1,14 +1,19 @@
 
+!!!!!!!!!!!
+声明：非原创，仅做个人学习与练习，如需学习与教程，详细原创地址参考如下
+尊重、支持、感谢原作者
+
 
 
 Linux下C++轻量级Web服务器,搭建属于自己的服务器.
 
-* 使用 **线程池 + 非阻塞socket + epoll(ET和LT均实现) + 事件处理(Reactor和模拟Proactor均实现)** 的并发模型
+* 使用 **线程池 + 非阻塞socket + epoll + 事件处理** 的并发模型
 * 使用**状态机**解析HTTP请求报文，支持解析**GET和POST**请求
 * 访问服务器数据库实现web端用户**注册、登录**功能，可以请求服务器**图片和视频文件**
 * 实现**同步/异步日志系统**，记录服务器运行状态
+* 实现**文件上传/下载功能**，记录文件操作状态
+* 利用**cookie/session**，实现对用户登录状态信息的记录
 * 经Webbench压力测试可以实现**上万的并发连接**数据交换
-
 
 
 概述
@@ -18,7 +23,7 @@ Linux下C++轻量级Web服务器,搭建属于自己的服务器.
                 《Linux多线程服务端编程》 陈硕著
 
 参考学习资源来源：
-
+* [爱编程的大丙：高性能线程池](https://subingwen.cn/linux/threadpool-cpp/)
 * [小白视角：一文读懂社长的TinyWebServer](https://huixxi.github.io/2020/06/02/%E5%B0%8F%E7%99%BD%E8%A7%86%E8%A7%92%EF%BC%9A%E4%B8%80%E6%96%87%E8%AF%BB%E6%87%82%E7%A4%BE%E9%95%BF%E7%9A%84TinyWebServer/#more)
 * [最新版Web服务器项目详解 - 01 线程同步机制封装类](https://mp.weixin.qq.com/s?__biz=MzAxNzU2MzcwMw==&mid=2649274278&idx=3&sn=5840ff698e3f963c7855d702e842ec47&chksm=83ffbefeb48837e86fed9754986bca6db364a6fe2e2923549a378e8e5dec6e3cf732cdb198e2&scene=0&xtrack=1#rd)
 * [最新版Web服务器项目详解 - 02 半同步半反应堆线程池（上）](https://mp.weixin.qq.com/s?__biz=MzAxNzU2MzcwMw==&mid=2649274278&idx=4&sn=caa323faf0c51d882453c0e0c6a62282&chksm=83ffbefeb48837e841a6dbff292217475d9075e91cbe14042ad6e55b87437dcd01e6d9219e7d&scene=0&xtrack=1#rd)
